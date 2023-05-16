@@ -1,0 +1,93 @@
+MongoDB commands for databases
+
+View all databases
+show dbs;
+
+Create a new or switch databases
+use dbName
+
+View current database
+db
+
+Delete database
+db.dropDatabase()
+
+
+MongoDB commands for Collections
+show collections
+
+Create a collection named 'myComments'
+db.createCollection('myComments)
+
+Delete a collection
+db.colName.drop()
+
+MongoDB commands for Rows
+Show all Rows in a collection
+db.colName.find()
+
+Insert One Row
+db.colName.insert({
+    "name":"Aastha",
+    "lan":"Javascript",
+    "member_since": 5
+    })
+
+
+Insert Many Rows
+db.colName.insertMany([{
+    "name":"Aastha",
+    "lan":"Javascript",
+    "member_since": 5
+    },
+    {
+    "name":"Prachi",
+    "lan":"Java",
+    "member_since": 6
+    },
+    {
+    "name":"Neha",
+    "lan":"C",
+    "member_since": 3
+    }])
+
+
+Show all Rows in a collection (Prettified)
+db.colName.find().pretty()
+
+
+Search in a MongoDb database
+db.colName.find({lang:Java})
+
+Limiting the number of rows in output
+db.colName.find().limit(2)
+
+Count the number of rows in output
+db.colName.find().count(2)
+db.colName.find().count()
+
+Update a row 
+db.colName.update({name:'Aastha'},
+{
+    "name":"Aastha",
+    "lan":"Javascript",
+    "member_since": 51
+})
+
+Increment Operator - $inc
+db.colName.update({name:'Prachi'},
+{$inc: {
+    "member_since": 2
+}})
+
+Rename Operator
+db.colName.update({name:'Prachi'},
+{$rename: {
+    member_since: 'member'
+}})
+
+Delete Row
+db.colName.update({name:'Aastha'},
+
+Less than/Greater than/Less than equal/Greater than equal
+db.colName.find({member_since:{$lt: 90}}
