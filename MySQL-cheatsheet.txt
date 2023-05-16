@@ -1,0 +1,128 @@
+View databases:
+show databases;
+
+create database [db_name];
+eg:
+create database learn;
+
+use [db_name];
+eg:
+use learn;
+
+
+Operations on table :
+
+create table [table_name] (col1, col2, col3, ...);
+eg: 
+create table user (id int(11), name varchar(100), city varchar(50));
+
+show tables;
+desc [table_name];
+eg:
+desc user;
+
+drop table [table_name];
+eg:
+drop table user;
+
+
+alter table [old_table_name] rename to [new_table_name];
+alter table user rename to student;
+
+truncate table [table_name];
+truncate table student;
+
+insert into [table_name] (id, name, city) values(12, 'Aastha', 'Indore');   - can change it's order
+insert into [table_name] values(12, 'Aastha', 'Indore');  - can't change it's order
+eg:
+insert into student values(12, 'Aastha', 'Indore');  
+
+alter table [table_name] add column_name;
+alter table student add country;
+
+update [table_name] set col = value, col = value where col = value;
+update student set city = 'delhi', country = 'ind' where name = 'Aastha';
+
+delete from [table_name] where col_name = value;
+delete from student where id = 12;
+
+Clauses
+
+where:
+select name from student where country='india';
+
+Alias:  - as
+select name as username from student where country='india';
+select name as username from student;
+
+Distinct: 
+select Distinct(name) from student;
+
+And Operator:
+select name from student where country='india' and id =5;
+
+Or Operator:
+select name from student where country='india' or id =5;
+
+Between Operator:
+select name from student where id>=2 or id<=5;  // return id = 2, 3, 4, 5
+select name from student where id>2 or id<5;  // return id = 3, 4
+
+                        or
+select name from student where id Between 2 and 5;   // return id = 2, 3, 4, 5
+
+In Operator:
+select name from student where id in(2, 5, 6);   // return id = 2, 5, 6
+
+Limit:
+select * from student limit 4;  // return first 4 rows
+
+Order by:
+select * from student order by id;  // return id = 1, 2, 3, ...   (ASCENDING)
+select * from student order by id desc;  // return id = 5, 4, 3, ...   (DESCENDING)
+
+LIMIT + ORDER BY
+select * from student order by id desc limit 2;  // return id = 5, 4
+
+LIKE OPERATOR:
+select * from student where name like 'a%';  // return name starting from 'a'
+select * from student where name like '_a%';  // return name having second character as 'a'
+select * from student where name like '%a_';  // return name having last second character as 'a'
+
+AGGREGATE FUNCTION:
+
+SUM:- Calculate salary of all
+select sum(salary) from student;
+
+AVGERAGE:- fetch average salary
+select avg(salary) from student;
+
+MINIMUM:- fetch minimum salary from all
+select min(salary) from student;
+
+MAXIMUM:- fetch maximum salary from all 
+select max(salary) from student;
+
+COUNT:- fetch total number of ids
+select count(id) from student;
+
+
+FOREIGN KEY:
+create table laptops (lid int(11), lmodel varchar(50), studentId int,foreign key(studentId) references student(id));
+
+insert some rows in it using insert query as above 
+
+JOINS:
+select student.name, student.id, laptops.lmodel from student, laptops where student.id = laptops.studentId;
+
+INNER JOIN:
+select student.name, student.id, laptops.lmodel from student inner join laptops on student.id = laptops.studentId;
+
+
+
+
+
+
+
+
+
